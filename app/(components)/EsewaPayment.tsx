@@ -42,6 +42,7 @@ const EsewaPayment = () => {
       </h2>
       <div className="form-group flex flex-col gap-[0.8rem]">
         <input
+          disabled={pending}
           type="number"
           id="amount"
           className={`form-control border border-neutral-800 bg-neutral-100 text-black text-[1.8rem] p-[0.8rem] rounded-md ${
