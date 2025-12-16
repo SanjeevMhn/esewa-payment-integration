@@ -21,7 +21,11 @@ export async function initiatePayment(formData: {
   product_id: string;
 }) {
   const { amount, product_id } = formData;
-  const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'
+  const baseUrl =
+    process.env.VERCEL_ENV === "production" ||
+    process.env.VERCEL_ENV === "preview"
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : "http://localhost:3000";
   const paymentData = {
     amount,
     failure_url: `${baseUrl}${process.env.FAILURE_URL}`,
